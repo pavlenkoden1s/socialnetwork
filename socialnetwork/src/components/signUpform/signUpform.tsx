@@ -4,6 +4,7 @@ import { InputTypes, Field } from '../field';
 interface IProps {
     className?: string;
     title?: string;
+    isLoading?: boolean;
     onSubmit: (payload: {email: string, name: string, password: string}) => void
 }
 
@@ -40,16 +41,12 @@ export class SignUpForm extends React.PureComponent<IProps, IState>{
         e.preventDefault();
         const {email, name, password} = this.state;
         this.props.onSubmit({email,name,password});
-        // const resp = signUp(this.state);
-        // console.log(resp);
-        // this.props.onSubmit(this.state.email, this.state.name, this.state.password);
     };
-
     render(){
-        // const { name, email, password } = this.state;
-        // console.log(name);
-        
-        // const { username, password, submitted } = this.state;
+        const {isLoading} = this.props; 
+        if (isLoading) {
+            return <h2>loading...</h2>
+          }
         return <form onSubmit={this.onSubmit}>
             <Field 
             type={InputTypes.EMAIL} 

@@ -12,6 +12,7 @@ export interface IsignUpState {
     isRegistered: boolean
     token: string
     userId: string
+    isLoading: boolean
 }
 
 export type signUpAction  = IAction<signUpActionType, {[key: string]: any}>;

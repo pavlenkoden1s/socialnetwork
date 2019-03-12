@@ -1,25 +1,64 @@
-import React from 'react';
-import classnames from 'classnames';
-import { Field, InputTypes } from '../field';
+import React, { SyntheticEvent } from 'react';
+import { InputTypes, Field } from '../field';
 
-export interface IProps {
+interface IProps {
     className?: string;
     title?: string;
-    //onSubmit: (v: string) => void
+    isLoading?: boolean;
+    onSubmit: (payload: {email: string, password: string}) => void
 }
 
-export class SignInForm extends React.PureComponent<IProps>{
+interface IState {
+    email:string;
+    password: string;
+}
+
+export class SignInForm extends React.PureComponent<IProps, IState>{
+    public state = {
+        email: 'rr@tt.rr',
+        password: 'qwerty'
+    };
+    private handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+
+        const { name, value } = e.currentTarget;
+        switch (name) {
+            case 'email':
+            this.setState({ email: value });
+                break;
+            case 'password':
+            this.setState({ password: value });
+                break;
+            default:
+                break;
+        }
+    }
+    private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const {email, password} = this.state;
+        this.props.onSubmit({email,password});
+    };
     render(){
-        const {...props} = this.props;
-        return <div><h1>{props.title}</h1><form>
+        const {isLoading} = this.props; 
+        if (isLoading) {
+            return <h2>loading...</h2>
+          }
+        return <form onSubmit={this.onSubmit}>
             <Field 
-            type={InputTypes.TEXT} placeholder={'email'}
+            type={InputTypes.EMAIL} 
+            placeholder={'email'} 
+            name={'email'}
+            value={this.state.email}
+            onChange={this.handleChange}
             />
             <Field 
-            type={InputTypes.PASSWORD} placeholder={'password'}
+            type={InputTypes.PASSWORD} 
+            name={'password'}
+            placeholder={'password'}
+            onChange={this.handleChange}
+            value={this.state.password}
             />
-            <button type={'submit'}>Enter</button>
+            <button type={'submit'}>Submit</button>
             
-        </form></div>
-    } 
+        </form>
+    }
 }

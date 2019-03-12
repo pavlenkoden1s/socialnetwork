@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
-import { SignIn } from './containers/signInContainer';
+import { SignIn } from './containers/signinContainer';
 import { SignUp } from './containers/signupContainer';
 
 

@@ -1,4 +1,5 @@
 import { signUpAction, signUpActionType, IsignUpState } from './types'
+import { AppState } from '../types';
 
 const INITIAL_STATE = {
     isRegistered: false,
@@ -25,3 +26,6 @@ export default function signUpReducer (state: IsignUpState = INITIAL_STATE, acti
             break;
     }
 }
+
+export const getIsLoading = (state: AppState): boolean => { console.log(state.isLoading);
+ return state.isLoading;}

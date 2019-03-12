@@ -1,12 +1,18 @@
 import { IAction } from '../../types/action'; 
-import { AnyAction } from 'redux';
+import { SignInResponse } from '../../services/signIn';
 
 export enum signInActionType{
-    SIGNIN = "Sign in"
+    SIGNIN = "Sign In",
+    WAITSIGNIN = "Waiting signIn",
+    SIGNINDONE = "Sign In done",
+    SIGNINERROR = "Sign In Error"
 }
 
 export interface IsignInState {
-    IsAuthorized: boolean
+    isRegistered: boolean
+    token: string
+    userId: string
+    isLoading: boolean
 }
 
-export type signInAction  = IAction<signInActionType, boolean>;
+export type signInAction  = IAction<signInActionType, {[key: string]: any}>;
