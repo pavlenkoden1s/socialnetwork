@@ -5,28 +5,28 @@ interface IProps {
     className?: string;
     title?: string;
     isLoading?: boolean;
-    onSubmit: (payload: {email: string, password: string}) => void
+    onSubmit: (payload: {title: string, content: string}) => void
 }
 
 interface IState {
-    email:string;
-    password: string;
+    title: string;
+    content:string;
 }
 
-export class SignInForm extends React.PureComponent<IProps, IState>{
+export class AddPostForm extends React.PureComponent<IProps, IState>{
     public state = {
-        email: 'abc@pat.ru',
-        password: 'qwerty'
+        title: 'title',
+        content: 'content'
     };
     private handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
 
         const { name, value } = e.currentTarget;
         switch (name) {
-            case 'email':
-            this.setState({ email: value });
+            case 'title':
+            this.setState({ title: value });
                 break;
-            case 'password':
-            this.setState({ password: value });
+            case 'content':
+            this.setState({ content: value });
                 break;
             default:
                 break;
@@ -34,8 +34,8 @@ export class SignInForm extends React.PureComponent<IProps, IState>{
     }
     private onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const {email, password} = this.state;
-        this.props.onSubmit({email,password});
+        const {title, content} = this.state;
+        this.props.onSubmit({title, content});
     };
     render(){
         const {isLoading} = this.props; 
@@ -44,20 +44,20 @@ export class SignInForm extends React.PureComponent<IProps, IState>{
           }
         return <form onSubmit={this.onSubmit}>
             <Field 
-            type={InputTypes.EMAIL} 
-            placeholder={'email'} 
-            name={'email'}
-            value={this.state.email}
+            type={InputTypes.TEXT} 
+            name={'title'}
             onChange={this.handleChange}
+            placeholder={'title'}
+            value={this.state.title}
             />
             <Field 
-            type={InputTypes.PASSWORD} 
-            name={'password'}
-            placeholder={'password'}
+            type={InputTypes.TEXT} 
+            name={'content'}
+            placeholder={'post content'}
             onChange={this.handleChange}
-            value={this.state.password}
+            value={this.state.content}
             />
-            <button type={'submit'}>Submit</button>
+            <button type={'submit'}>Post</button>
             
         </form>
     }

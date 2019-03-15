@@ -1,29 +1,25 @@
-import { signInAction, signInActionType, IsignInState } from './types'
+import { addPostAction, addPostActionType, IaddPostState } from './types'
 import { AppState } from '../types';
 
 const INITIAL_STATE = {
-    isRegistered: false,
     isLoading: false,
-    token: "",
-    userId: ""
+    message: ""
 }
 
-export default function signInReducer (state: IsignInState = INITIAL_STATE, action: signInAction) {
+export default function addPostReducer (state: IaddPostState = INITIAL_STATE, action: addPostAction) {
     let payload=null;
     switch (action.type) {
-        case signInActionType.SIGNIN:
+        case addPostActionType.ADDPOST:
              payload = action.payload;
             return {...state, ...action.payload}
-            break;
-        case signInActionType.SIGNINDONE:
+        case addPostActionType.ADDPOSTDONE:
              payload = action.payload;
             return {...state, ...payload}
-        case signInActionType.WAITSIGNIN:
+        case addPostActionType.WAITADDPOST:
              payload = action.payload;
             return {...state, ...action.payload}
         default:
         return state;
-            break;
     }
 }
 

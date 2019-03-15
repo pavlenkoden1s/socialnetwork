@@ -10,16 +10,17 @@ export class App extends React.Component<{},{}> {
     return (<div className={'page-container'}>
       <Topmenu>
         {
-          routes.map(({path, title}) => (
-            <TopmenuItem path={path} title={title}/>
+          routes.map(({path, title}, i) => (
+            <TopmenuItem path={path} key={i} title={title}/>
           ))
         }
       </Topmenu>
       {
-        routes.map(({path, exact, Component, props}) => (
+        routes.map(({path, exact, Component, props}, i) => (
           <Route
             path={path}
             exact={exact}
+            key={i}
             render={(routeProps) => {
               // console.log(routeProps);
               return <Component {...props} {...routeProps} />

@@ -29,6 +29,8 @@ export const getSignIn = (payload: {email: string, password:string}):any =>  {
     const response = await doSignIn(payload);
   if(response){
     const {token, userId} = response
+    localStorage.setItem("token", token);
+    console.log('log='+localStorage.getItem('token'));
     dispatch(doSign({token, userId}));
     dispatch(SignInDone());
   } else {

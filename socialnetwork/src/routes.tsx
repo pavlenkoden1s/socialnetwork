@@ -2,7 +2,8 @@ import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { SignIn } from './containers/signinContainer';
 import { SignUp } from './containers/signupContainer';
-
+import { AddPost }  from './containers/addPostContainer';
+import { Feed } from './containers/feedContainer';
 
 export const routes = [
     {
@@ -39,8 +40,17 @@ export const routes = [
     {
         title: 'Sign Up',
         path: '/sign-up',
-        // Component: () => <h1>SignUpForm</h1>
         Component: () => <SignUp />
-      }
+      },
+      {
+        title: 'Add post',
+        path: '/add-post',
+        Component: () => <AddPost />
+      },
+    //   {
+    //     title: 'Feed',
+    //     path: '/feed',
+    //     Component: () => <Feed />
+    //   }
   ];
   

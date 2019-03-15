@@ -14,7 +14,6 @@ export default function signUpReducer (state: IsignUpState = INITIAL_STATE, acti
         case signUpActionType.SIGNUP:
              payload = action.payload;
             return {...state, ...action.payload}
-            break;
         case signUpActionType.SIGNUPDONE:
              payload = action.payload;
             return {...state, ...payload}
@@ -23,9 +22,7 @@ export default function signUpReducer (state: IsignUpState = INITIAL_STATE, acti
             return {...state, ...action.payload}
         default:
         return state;
-            break;
     }
 }
 
-export const getIsLoading = (state: AppState): boolean => { console.log(state.isLoading);
- return state.isLoading;}
+export const getIsLoading = (state: AppState): boolean => { return state.isLoading;}

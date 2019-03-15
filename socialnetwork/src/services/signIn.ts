@@ -1,3 +1,4 @@
+import defconfig from "../config";
 
 export interface SignInResponse {
     token: string;
@@ -11,13 +12,9 @@ export interface SignInResponse {
         body: JSON.stringify(payload)
     };
 
-    const res = await fetch(`https://rest-node-course-api.herokuapp.com/auth/login`, requestOptions)
+    const res = await fetch(`${defconfig.baseUrl}/auth/login`, requestOptions)
     const data = await res.json() as SignInResponse;
     console.log(data);
     return data;
-    // const {token, userId} = data;
-    // console.log('resp');
-    // console.log(data);
-    // return {token, userId}
 }
 export default doSignIn

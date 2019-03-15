@@ -12,7 +12,7 @@ export interface IState{
 
 export const SignIn: React.FunctionComponent<IProps> = ({onSignIn, isLoading}) => {
     return <div className={'sign-up'}>
-        <h1>Enter</h1>
+        <h1>Sign in</h1>
         { <SignInForm className={'sign-in__form'} isLoading={isLoading} onSubmit={onSignIn} /> }
     </div>;
 }
