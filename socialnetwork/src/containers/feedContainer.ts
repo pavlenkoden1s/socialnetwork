@@ -3,17 +3,22 @@ import { AppState } from "../store";
 import { getFeed, IgetFeedState } from "../store/feed";
 import { getFeeds } from "../store/feed/reducer";
 import { Feed } from "../components/feed";
-interface IStateToProps {
-
+import { Post } from "../types/feed";
+interface IFeedStateProps {
+    posts: Array<Post>
 }
+export interface IFeedOwnProps {}
 
-const mapStateToProps = (state: IgetFeedState)  => {
+export interface IFeedDispatchProps {}
+
+type Props = IFeedStateProps & IFeedDispatchProps & IFeedOwnProps
+const mapStateToProps = (state: IgetFeedState): Props  => {
     return {
-      images: getFeeds(state),
+      posts: getFeeds(state),
     //   isLoading: getIsLoading(state),
     };
   };
 
-const FeedContainer = connect<IStateToProps,null,null>(mapStateToProps as any)(Feed)
+const FeedContainer = connect<IFeedStateProps, IFeedDispatchProps, IFeedOwnProps >(mapStateToProps as any)(Feed)
 
 export {FeedContainer as Feed}

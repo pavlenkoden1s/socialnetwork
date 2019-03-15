@@ -50,7 +50,7 @@ export const routes = [
     //   {
     //     title: 'Feed',
     //     path: '/feed',
-    //     Component: () => <Feed />
+    //     Component: Feed
     //   }
   ];
   
