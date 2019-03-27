@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { signInAction, getSignIn } from '../store/signIn';
 import { SignIn } from '../components/signIn';
 import { AppState } from '../store/types';
-import { getIsLoading } from '../store/signIn/reducer';
+import { getIsLoading, getIsRegistered } from '../store/signIn/reducer';
 
 interface IStateToProps {
   isLoading: boolean;
+  isRegistered: boolean;
 }
 
 interface IDispatchProps {
@@ -19,7 +20,8 @@ interface IDispatchProps {
 
   const mapStateToProps = (state: AppState) => {
       return {
-        isLoading: getIsLoading(state)
+        isLoading: getIsLoading(state),
+        isRegistered: getIsRegistered(state)
       }
   }
 

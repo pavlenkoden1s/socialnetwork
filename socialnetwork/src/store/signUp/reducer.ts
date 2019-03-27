@@ -25,4 +25,4 @@ export default function signUpReducer (state: IsignUpState = INITIAL_STATE, acti
     }
 }
 
-export const getIsLoading = (state: AppState): boolean => { return state.isLoading;}
+export const getIsLoading = (state: AppState): boolean => { return state.signUp.isLoading;}

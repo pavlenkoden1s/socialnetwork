@@ -23,4 +23,4 @@ export default function addPostReducer (state: IaddPostState = INITIAL_STATE, ac
     }
 }
 
-export const getIsLoading = (state: AppState): boolean => { return state.isLoading;}
+export const getIsLoading = (state: AppState): boolean => { return state.feed.isLoading;}

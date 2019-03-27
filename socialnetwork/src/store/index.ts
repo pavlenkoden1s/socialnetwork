@@ -1,12 +1,16 @@
 import { combineReducers, Reducer } from 'redux';
 import { AppState } from './types'
-import signInReducer from './signIn'
-import signUpReducer from './signUp';
-import addPostReducer from './addPost';
-import getFeedReducer from './feed';
+import signIn from './signIn'
+import signUp from './signUp';
+import addpost from './addPost';
+import feed from './feed';
 
 
-const reducer: Reducer  = combineReducers({signUpReducer, signInReducer, addPostReducer, getFeedReducer
+const reducer: Reducer  = combineReducers({
+    signUp, 
+    signIn, 
+    addpost, 
+    feed
 });
 
 export default reducer;

@@ -8,13 +8,12 @@ const INITIAL_STATE = {
     userId: ""
 }
 
-export default function signInReducer (state: IsignInState = INITIAL_STATE, action: signInAction) {
+export default (state: IsignInState = INITIAL_STATE, action: signInAction) => {
     let payload=null;
     switch (action.type) {
         case signInActionType.SIGNIN:
              payload = action.payload;
             return {...state, ...action.payload}
-            break;
         case signInActionType.SIGNINDONE:
              payload = action.payload;
             return {...state, ...payload}
@@ -23,8 +22,8 @@ export default function signInReducer (state: IsignInState = INITIAL_STATE, acti
             return {...state, ...action.payload}
         default:
         return state;
-            break;
     }
 }
 
-export const getIsLoading = (state: AppState): boolean => { return state.isLoading;}
+export const getIsLoading = (state: AppState): boolean => { return state.signIn.isLoading;}
+export const getIsRegistered = (state: AppState): boolean => { return state.signIn.isRegistered;}

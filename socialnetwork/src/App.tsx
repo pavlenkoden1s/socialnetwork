@@ -16,14 +16,14 @@ export class App extends React.Component<{},{}> {
         }
       </Topmenu>
       {
-        routes.map(({path, exact, Component, props}, i) => (
+        routes.map(({path, /*exact,*/ Component, props}, i) => (
           <Route
             path={path}
-            exact={exact}
+            // exact={exact}
             key={i}
-            render={(routeProps) => {
+            render={(routeProps: any) => {
               // console.log(routeProps);
-              return <Component {...props} {...routeProps} />
+              return <Component {...props}  {...routeProps} />
             }}
           />
         ))

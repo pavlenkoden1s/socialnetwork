@@ -6,15 +6,15 @@ export interface FeedResponse {
     posts: Array<Post>
 }
 
-export const doLoadFeed = async (payload: {title: string, content: string}): Promise<FeedResponse> => {
+export const doLoadFeed = async (page: number): Promise<FeedResponse> => {
     const token = localStorage.getItem('token');
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: {  'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`},
-                    body: JSON.stringify(payload)
+                    //body: JSON.stringify(page)
     };
-    const res = await fetch(`${defconfig.baseUrl}/feed/posts`, requestOptions)
+    const res = await fetch(`${defconfig.baseUrl}/feed/posts?page=${page}`, requestOptions)
     const data = await res.json() as FeedResponse;
     console.log(data);
     return data;

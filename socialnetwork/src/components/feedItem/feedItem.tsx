@@ -6,9 +6,10 @@ interface IProps {
     _id: string
 }
 
-export const FeedItem: React.FunctionComponent<IProps> = ({title, content, _id}) => {
-    return <div className='feedItem' id={_id}>
-        <h2>{title}</h2>
-        <div className='feedItem__content'>{content}</div>
-    </div>;
+export const FeedItem: React.FunctionComponent<IProps> = ({_id, title, content}) => {
+        // const {_id, title, content} = this.props;
+        return <div className='feedItem' id={_id}>
+            <h2>{title}</h2>
+            <div className='feedItem__content'>{content}</div>
+        </div>;
 }

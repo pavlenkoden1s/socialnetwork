@@ -1,9 +1,15 @@
 import { Dispatch } from 'react';
 import { getFeedAction, getFeedActionType } from './types';
-import { doAddPost } from '../../services/addPost';
+import { doLoadFeed } from '../../services/feed';
+import { Post } from '../../types/feed';
 
-const LoadFeed = (payload: any) => ({
-    type: getFeedActionType.LOADFEED,
+interface ILoadFeed {
+  message: string,
+  posts: Array<Post>
+}
+
+const LoadFeed = (payload: ILoadFeed) => ({
+    type: getFeedActionType.GETFEED,
     payload
   });
   
@@ -12,9 +18,9 @@ const LoadFeed = (payload: any) => ({
     payload: { isLoading: true }
   });
   
-  const loadFeedDone = () => ({
+  const loadFeedDone = (pageNext: number) => ({
     type: getFeedActionType.LOADFEEDDONE,
-    payload: { isLoading: false, isRegistered: true}
+    payload: { isLoading: false, isRegistered: true, page: pageNext}
   });
   
   const loadFeedError = () =>({
@@ -22,14 +28,14 @@ const LoadFeed = (payload: any) => ({
     payload: {isLoading: false, isRegistered: false}
   });
 
-export const getFeed = (payload: {title: string, content:string}):any =>  {
+export const getFeed = (page: number):any =>  {
     return async (dispatch: Dispatch<getFeedAction>) => {
       dispatch(waitLoadFeed());
-      const response = await doAddPost(payload);
+      const response = await doLoadFeed(page);
     if(response){
-      const { message} = response
-      dispatch(LoadFeed({message}));
-      dispatch(loadFeedDone());
+      const { message, posts} = response
+      dispatch(LoadFeed({message, posts}));
+      dispatch(loadFeedDone(page+1));
     } else {
       dispatch(loadFeedError());
     }

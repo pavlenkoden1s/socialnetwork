@@ -5,6 +5,7 @@ interface IProps {
     className?: string;
     title?: string;
     isLoading?: boolean;
+    isRegistered?: boolean;
     onSubmit: (payload: {email: string, password: string}) => void
 }
 
@@ -38,9 +39,13 @@ export class SignInForm extends React.PureComponent<IProps, IState>{
         this.props.onSubmit({email,password});
     };
     render(){
-        const {isLoading} = this.props; 
+        const {isLoading, isRegistered} = this.props; 
         if (isLoading) {
             return <h2>loading...</h2>
+          }
+        
+        if (isRegistered) {
+            return <h2>Successfully registered!</h2>
           }
         return <form onSubmit={this.onSubmit}>
             <Field 
